@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Paper Article Writer"
+  short_description: "Find local paper PDFs and write Chinese WeChat public-account article drafts."
+  default_prompt: "Use $wechat-paper-article-writer to find local paper PDFs in a file or project folder, then write Chinese WeChat public-account article drafts with key figures."
