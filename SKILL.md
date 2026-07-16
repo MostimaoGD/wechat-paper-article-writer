@@ -59,20 +59,18 @@ Treat these files as temporary working evidence. Do not leave them in the final 
 
 5. Select 3 to 5 key figures or tables. Prefer high-confidence image crops. If no reliable crop exists, use `figure-region` or `table-region` caption-guided crops before considering any full-page image. Avoid inserting whole paper pages unless there is truly no usable region crop; if a full page is unavoidable, explicitly call it a last-resort page-level image in the note. Never silently drop a requested or important figure; if no image can be inserted, keep a figure placeholder with the reason.
 
-6. Choose a final note basename. Default to `note` for compatibility, but use a descriptive basename when the user asks or when multiple notes will share an output directory, for example `strip-loaded-lnoi-mpl-reading-note`. Write `<basename>.md` in Chinese under the output directory. Use an H1 that is a one-sentence summary of the paper's contribution, not the literal paper title; keep the official title in Paper basic information. Use these sections, in Chinese headings:
+6. Choose a final note basename. Default to `note` for compatibility, but use a descriptive basename when the user asks or when multiple notes will share an output directory. Write `<basename>.md` in Chinese. Prefix the H1 with the journal or conference abbreviation, followed by `｜`, then summarize the main contribution in one sentence rather than copying the paper title, for example `# LPR｜把校正层放进散射体内部：交错衍射网络让随机扩散器后的光学信息重新可读`. Use the venue's official or widely accepted abbreviation; if no reliable abbreviation can be identified, use the full venue name rather than inventing one.
 
-- Paper basic information (insert `images/paper_info.png` as the main paper-info image; do not use a metadata table unless the image is unavailable)
-- Abstract translation or reconstructed abstract
-- One-sentence summary
-- Research question and background
-- Method, system, or experiment storyline
-- Key results
-- Key figure and table interpretation
-- Innovations
-- Limitations and unproven claims
-- Implications for research or engineering
+Begin with a brief "论文基本信息" section containing the official title, authors, affiliations, venue, year, DOI, research field, and `![Paper information](images/paper_info.png)` when available. Then organize the article with these Chinese sections:
 
-In Paper basic information, insert `![Paper information](images/paper_info.png)` first when available, then add only brief text for missing fields such as DOI; avoid a table. Ground claims in page references such as `(Page 4)` and figure/table captions. Add Markdown image links using paths relative to the Markdown note, for example `![Figure 2 region image](images/p003_fig_2_01.png)`.
+1. **领域背景**：Explain the necessary background, research status, common technical routes, current challenges, and how this paper relates to prior work. Base this mainly on the introduction and related work; do not present unsupported external knowledge as current fact.
+2. **问题解决**：State the specific scientific or technical problem, limitations of existing methods, why the problem is difficult, and its scientific or practical value.
+3. **创新方案**：Follow the paper's actual technical sequence: **设计 → 仿真验证 → 制备/实现 → 表征与测试**. For design, explain the principle, structure, key parameters, and novelty. For simulation, explain the model, conditions, optimization, and predicted performance. For fabrication or implementation, explain the process, materials, equipment, algorithm, or system realization. For characterization and testing, explain the setup, method, conditions, variables, and controls. If a stage is absent, state "论文未涉及" instead of inferring it.
+4. **主要结果**：Report the main findings and performance metrics with values, units, conditions, error information, and baselines when available. Identify whether each result comes from theory, simulation, direct measurement, fitting, or extrapolation. Compare theory, simulation, and experiment without treating simulated performance as measured performance. Include limitations and claims that remain unproven.
+5. **关键图表**：Select 3 to 5 figure/table groups central to the argument. Explain the purpose, axes or variables, conditions, trend, and supported conclusion. For every selected multi-panel figure, analyze each relevant panel separately using its actual label, such as `Fig. 1(a)` and `Fig. 2(b)`. Cross-check the image, caption, and surrounding text; do not invent panels or present visual inference as an explicit author claim.
+6. **创新贡献与启示**：Concisely summarize the paper's main contributions, substantive improvement over prior work, evidence chain, limitations, and implications for research or engineering.
+
+Ground important claims in page references such as `(Page 4)` and exact figure/table identifiers. Add image links using paths relative to the Markdown note. Keep the writing accurate, clear, and focused on the sequence **问题 → 设计 → 仿真 → 实现 → 测试 → 结果 → 贡献**. Do not translate the paper paragraph by paragraph. When evidence is insufficient, state "论文未报告" or "现有证据无法确认".
 
 7. Export the note to DOCX:
 
@@ -95,6 +93,8 @@ This embeds local Markdown images as data URIs, then removes `images/`, extracti
 ## Figure Policy
 
 - Select 3 to 5 key figures/tables by relevance to the paper's argument, not only by image size.
+- For every selected multi-panel figure, retain visible panel labels, axes, legends, and scale bars, then explain each relevant panel separately.
+- Verify panel labels and interpretations against the image, caption, and surrounding text. Mark visual inference explicitly and never invent a subpanel.
 - Use crop candidates when `candidate_figures.json` gives a high-confidence crop near a caption.
 - Use caption-guided `figure-region` or `table-region` crops for vector-heavy figures, tables, or multi-panel figures that cannot be isolated as PDF image blocks.
 - Avoid whole-page screenshots by default. Use full-page screenshots only as a last resort, and state "last-resort page-level image" in the caption or surrounding text whenever one is used.
