@@ -2,7 +2,6 @@
 
 `wechat-paper-article-writer` 是一个全局 Codex skill，用于把本地学术论文 PDF 转成中文公众号格式文章草稿，并输出 Markdown 和 DOCX。
 
-这个 skill 不调用 OpenAI API，也不依赖 `photonics_paper_radar` 项目。脚本只负责查找 PDF、抽取文本证据、抽取图表候选和导出 DOCX；公众号文章正文由当前 Codex 会话基于抽取证据来写。
 
 ## 位置
 
